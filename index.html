@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cura delle Relazioni - Predica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Cura delle Relazioni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg: #f5f0e8;
-            --surface: #faf6f0;
-            --surface-light: #fffdfa;
+            --cream: #f7f3ed;
+            --cream-dark: #ebe5d8;
             --text: #1a1814;
-            --text-muted: #6b6560;
+            --text-light: #4a4640;
             --accent: #8b6914;
-            --accent-light: #b8934a;
-            --warm: #a0522d;
-            --red: #c44536;
-            --blue: #4a6fa5;
-            --shadow: rgba(26, 24, 20, 0.08);
+            --accent-light: #c9a227;
+            --terracotta: #a0522d;
+            --shadow: rgba(26, 24, 20, 0.06);
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg);
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
             color: var(--text);
             overflow: hidden;
             height: 100vh;
@@ -40,10 +37,10 @@
             position: absolute;
             inset: 0;
             display: none;
-            padding: 80px 100px;
-            background: linear-gradient(135deg, #f5f0e8 0%, #ebe5d8 100%);
+            padding: 60px 80px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
             opacity: 0;
-            transition: opacity 0.8s ease;
+            transition: opacity 0.7s ease;
         }
         
         .slide.active {
@@ -55,64 +52,47 @@
             opacity: 1;
         }
         
-        .slide::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(ellipse at 20% 80%, rgba(139, 105, 20, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(160, 82, 45, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
         .content {
             max-width: 1100px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
             width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
             font-size: 4.5rem;
-            font-weight: 800;
+            color: var(--text);
             line-height: 1.1;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #1a1814 0%, #8b6914 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 20px;
         }
         
         h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 600;
-            margin-bottom: 35px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 3rem;
             color: var(--accent);
+            margin-bottom: 40px;
         }
         
         h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
             font-weight: 600;
-            color: var(--accent-light);
-            margin: 35px 0 20px;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            line-height: 1.9;
-            color: var(--text-muted);
-            margin-bottom: 22px;
-            font-weight: 400;
+            font-size: 1.8rem;
+            color: var(--terracotta);
         }
         
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
         
         .reveal.visible {
@@ -123,120 +103,213 @@
         .delay-1 { transition-delay: 0.15s; }
         .delay-2 { transition-delay: 0.3s; }
         .delay-3 { transition-delay: 0.45s; }
-        .delay-4 { transition-delay: 0.6s; }
-        .delay-5 { transition-delay: 0.75s; }
         
+        /* VERSE BOX */
         .verse-box {
-            background: linear-gradient(135deg, rgba(139, 105, 20, 0.08), rgba(160, 82, 45, 0.04));
-            border-left: 4px solid var(--accent);
-            padding: 30px 35px;
-            margin: 30px 0;
-            border-radius: 0 12px 12px 0;
-        }
-        
-        .verse-box p {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.35rem;
-            font-style: italic;
-            color: var(--text);
-            margin: 0;
-            line-height: 1.7;
-        }
-        
-        .verse-ref {
-            font-size: 0.95rem;
-            color: var(--accent);
-            margin-top: 15px;
-            display: block;
-        }
-        
-        .point-box {
-            background: rgba(255,255,255,0.7);
-            border: 1px solid rgba(139, 105, 20, 0.2);
-            border-radius: 16px;
-            padding: 35px;
+            background: rgba(139, 105, 20, 0.06);
+            border-left: 3px solid var(--accent);
+            padding: 25px 30px;
             margin: 25px 0;
         }
         
-        .point-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--accent), var(--warm));
-            color: var(--bg);
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            font-size: 1.2rem;
-            border-radius: 50%;
-            margin-right: 15px;
+        .verse-box p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
         }
         
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
+        .verse-ref {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: 12px;
+            display: block;
+            font-weight: 600;
         }
         
-        .grid-3 {
+        /* KEYWORDS */
+        .keyword {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 5px;
+        }
+        
+        .keyword-outline {
+            display: inline-block;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 5px;
+        }
+        
+        /* BIG NUMBER */
+        .big-number {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--accent);
+            opacity: 0.15;
+            line-height: 1;
+        }
+        
+        /* ICON GRID */
+        .icon-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 40px;
         }
         
-        .icon-card {
+        .icon-item {
             text-align: center;
-            padding: 40px 25px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 20px;
-            border: 1px solid rgba(139, 105, 20, 0.15);
-            box-shadow: 0 4px 20px var(--shadow);
+            padding: 30px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 16px;
         }
         
-        .icon-card .icon {
+        .icon-item .emoji {
             font-size: 3.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: block;
         }
         
-        .icon-card h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
+        .icon-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
             color: var(--accent);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
-        .icon-card p {
-            font-size: 0.95rem;
+        .icon-item p {
+            font-size: 0.9rem;
+            color: var(--text-light);
             margin: 0;
         }
         
+        /* TABLE */
+        .table-box {
+            background: rgba(255,255,255,0.7);
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .table-box table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table-box th {
+            background: var(--accent);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .table-box td {
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(139,105,20,0.1);
+            font-size: 0.95rem;
+        }
+        
+        .table-box tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* TWO COL */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .col-box {
+            background: rgba(255,255,255,0.6);
+            padding: 30px;
+            border-radius: 16px;
+        }
+        
+        .col-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--terracotta);
+            margin-bottom: 15px;
+        }
+        
+        .col-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .col-box li {
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+        
+        /* LIST ITEMS */
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .bullet-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .bullet-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* PROGRESS */
         .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--warm));
+            background: var(--accent);
             transition: width 0.5s ease;
             z-index: 1000;
         }
         
         .slide-counter {
             position: fixed;
-            top: 30px;
-            right: 40px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text-muted);
+            top: 25px;
+            right: 35px;
+            font-size: 0.9rem;
+            color: var(--text-light);
             z-index: 100;
         }
         
+        /* NAV */
         .nav-controls {
             position: fixed;
-            bottom: 40px;
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -246,515 +319,363 @@
         }
         
         .nav-btn {
-            width: 50px;
-            height: 50px;
-            border: 2px solid rgba(139, 105, 20, 0.25);
-            background: transparent;
+            width: 45px;
+            height: 45px;
+            border: 2px solid rgba(139,105,20,0.2);
+            background: white;
             color: var(--accent);
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .nav-btn:hover {
-            background: var(--accent);
-            color: var(--bg);
-            border-color: var(--accent);
-        }
-        
-        .nav-text {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-        
-        .title-slide {
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d0 100%);
-        }
-        
-        .subtitle {
-            font-size: 1.3rem;
-            color: var(--accent);
-            letter-spacing: 4px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-        
-        .sermon-title {
-            font-size: 1.6rem;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-top: 30px;
-        }
-        
-        .doctrine-badge {
-            display: inline-block;
-            background: rgba(201,162,39,0.15);
-            color: var(--accent);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(201,162,39,0.3);
         }
         
         @media (max-width: 900px) {
             .slide { padding: 40px; }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.8rem; }
-            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 25px; }
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            .icon-grid { grid-template-columns: 1fr; }
+            .two-col { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progress"></div>
-    <div class="slide-counter"><span id="current">1</span> / 14</div>
+    <div class="slide-counter"><span id="current">1</span> / 12</div>
     
     <div class="presentation" id="presentation">
         
         <!-- SLIDE 1: TITLE -->
-        <div class="slide title-slide active visible">
-            <div class="content">
+        <div class="slide active visible">
+            <div class="content" style="text-align: center;">
                 <div class="reveal visible">
-                    <p class="subtitle">Predica sulle Lettere di Paolo</p>
-                    <h1>La Cura delle Relazioni</h1>
-                    <p class="sermon-title">Costruire comunità attraverso l'amore autentico</p>
-                    <div style="width: 150px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 50px auto;"></div>
-                    <p style="font-size: 1rem; opacity: 0.6;">1 & 2 Tessalonicesi</p>
-                    <p style="font-size: 0.9rem; opacity: 0.5; margin-top: 40px;">Clicca per iniziare</p>
+                    <p style="font-size: 0.8rem; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 20px;">1 & 2 Tessalonicesi</p>
+                    <h1>Cura delle<br>Relazioni</h1>
+                    <div style="margin: 30px 0;">
+                        <span class="keyword-outline">Community</span>
+                        <span class="keyword-outline">Love</span>
+                        <span class="keyword-outline">Faith</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 40px;">Clicca per iniziare</p>
                 </div>
             </div>
         </div>
         
-        <!-- SLIDE 2: BRIEF CONTEXT -->
+        <!-- SLIDE 2: CONTEXT -->
         <div class="slide">
             <div class="content">
                 <div class="reveal">
-                    <span class="doctrine-badge">Contesto</span>
-                    <h2>Una Comunità Nata nella Persecuzione</h2>
+                    <h2>Il Contesto</h2>
                 </div>
-                <div class="grid-2">
-                    <div>
-                        <div class="reveal delay-1">
-                            <p>Nel 50 d.C., Paolo arriva a Tessalonica. In tre settimane, una comunità nasce. Ma subito la persecuzione li costringe a separarsi bruscamente.</p>
-                        </div>
-                        <div class="reveal delay-2">
-                            <p>Queste due lettere — le più antiche del Nuovo Testamento — sono tutte concentrate su una verità: <strong>la fede cristiana è relazionale</strong>.</p>
-                        </div>
-                        <div class="reveal delay-3">
-                            <div class="verse-box">
-                                <p>"Eravamo pronti a darvi non solo il vangelo di Dio, ma anche le nostre anime, perché ci eravate divenuti carissimi."</p>
-                                <span class="verse-ref">1 Tessalonicesi 2:8</span>
-                            </div>
+                <div class="two-col">
+                    <div class="reveal delay-1">
+                        <div style="text-align: center; padding: 40px;">
+                            <span style="font-size: 5rem;">📍</span>
+                            <h3 style="margin: 20px 0;">Tessalonica</h3>
+                            <p style="color: var(--text-light);">50 d.C. · Via Egnatia</p>
                         </div>
                     </div>
                     <div class="reveal delay-2">
-                        <div class="icon-card">
-                            <span class="icon">⛪</span>
-                            <h4>La Prima Chiesa d'Europa</h4>
-                            <p>Una comunità giovane, in crescita, che ha bisogno di essere guidata nell'arte delle relazioni autentiche.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 3: SERMON INTRO -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Introduzione</span>
-                    <h2>La Fede è Relazione</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Il cristianesimo non è una filosofia astratta. Non è un insieme di regole o dogmi da memorizzare. È innanzitutto <strong>relazione</strong> — con Dio e con il prossimo.</p>
-                </div>
-                <div class="reveal delay-2">
-                    <div class="verse-box">
-                        <p>"Tutta la legge infatti si compie in un solo precetto: «Amerai il tuo prossimo come te stesso»."</p>
-                        <span class="verse-ref">Galati 5:14</span>
-                    </div>
-                </div>
-                <div class="reveal delay-3">
-                    <p>Nelle lettere ai Tessalonicesi, Paolo ci mostra tre dimensioni relazionali che devono caratterizzare la chiesa: <strong>la relazione verticale con Dio</strong>, <strong>la relazione orizzontale con i fratelli</strong>, e <strong>la relazione verso il mondo</strong>.</p>
-                </div>
-                <div class="reveal delay-4">
-                    <div class="point-box">
-                        <p style="margin: 0; font-size: 1.3rem; color: var(--text);"><strong>Tesi della predica:</strong> La maturità spirituale si misura dalla qualità delle nostre relazioni.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 4: FIRST POINT -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Punto 1</span>
-                    <h2>Relazioni che Nutrono</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Paolo descrive il suo ministero usando tre immagini familiari potenti: <strong>madre</strong>, <strong>padre</strong>, e <strong>figlio</strong>. Ognuna rivela un aspetto essenziale delle relazioni cristiane.</p>
-                </div>
-                <div class="grid-3" style="margin-top: 40px;">
-                    <div class="reveal delay-2" style="background: rgba(255,255,255,0.7); padding: 35px; border-radius: 16px; border-top: 3px solid var(--accent);">
-                        <div style="font-size: 2.5rem; margin-bottom: 15px;">🤱</div>
-                        <h4 style="color: var(--accent); margin-bottom: 12px;">Come una Madre</h4>
-                        <p style="font-size: 1rem;">"Vi abbiamo nutriti col latte". Cura tenera, protezione, sostegno emotivo. Le relazioni cristiane devono <strong>nutrire</strong> spiritualmente.</p>
-                    </div>
-                    <div class="reveal delay-3" style="background: rgba(255,255,255,0.7); padding: 35px; border-radius: 16px; border-top: 3px solid var(--accent-light);">
-                        <div style="font-size: 2.5rem; margin-bottom: 15px;">👨‍🏫</div>
-                        <h4 style="color: var(--accent-light); margin-bottom: 12px;">Come un Padre</h4>
-                        <p style="font-size: 1rem;">"Vi esortavamo, vi confortavamo". Guida, esortazione, incoraggiamento. Le relazioni cristiane devono <strong>edificare</strong>.</p>
-                    </div>
-                    <div class="reveal delay-4" style="background: rgba(255,255,255,0.7); padding: 35px; border-radius: 16px; border-top: 3px solid var(--warm);">
-                        <div style="font-size: 2.5rem; margin-bottom: 15px;">👶</div>
-                        <h4 style="color: var(--warm); margin-bottom: 12px;">Come un Figlio</h4>
-                        <p style="font-size: 1rem;">"Mansueti come una balia". Umiltà, disponibilità a servire. Le relazioni cristiane richiedono <strong>umiltà</strong>.</p>
-                    </div>
-                </div>
-                <div class="reveal delay-5">
-                    <div class="verse-box" style="margin-top: 40px;">
-                        <p>"Non ci siamo mai fatti trovare con discorsi di lusinga, come ben sapete; né con pretesti di cupidigia; Dio ne è testimone. Non abbiamo cercato gloria da parte degli uomini."</p>
-                        <span class="verse-ref">1 Tessalonicesi 2:5-6</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 5: FIRST POINT APPLICATION -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Applicazione</span>
-                    <h2>Come Nutriamo gli Altri?</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Paolo non chiede denaro. Non cerca potere. Non vuole influenza. Vuole solo <strong>dare se stesso</strong>. Questo è il cuore del servizio cristiano.</p>
-                </div>
-                <div class="grid-2" style="margin-top: 40px;">
-                    <div class="reveal delay-2">
-                        <div class="point-box">
-                            <h4 style="color: var(--accent); margin-bottom: 20px;">❌ Relazioni Mondane</h4>
-                            <ul style="list-style: none; padding: 0; color: var(--text-muted);">
-                                <li style="margin: 15px 0;">• Basate sul potere e controllo</li>
-                                <li style="margin: 15px 0;">• Motivate da interesse personale</li>
-                                <li style="margin: 15px 0;">• Cercano gloria e riconoscimento</li>
-                                <li style="margin: 15px 0;">• Usano le persone come strumenti</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="reveal delay-3">
-                        <div class="point-box" style="border-color: var(--accent);">
-                            <h4 style="color: var(--accent); margin-bottom: 20px;">✓ Relazioni Cristiane</h4>
-                            <ul style="list-style: none; padding: 0; color: var(--text-muted);">
-                                <li style="margin: 15px 0;">• Servono con umiltà</li>
-                                <li style="margin: 15px 0;">• Danno senza chiedere nulla</li>
-                                <li style="margin: 15px 0;">• Cercano il bene dell'altro</li>
-                                <li style="margin: 15px 0;">• Amano sacrificandosi</li>
+                        <div class="col-box">
+                            <h4>Dati</h4>
+                            <ul class="bullet-list">
+                                <li>3 settimane di ministero</li>
+                                <li>Prima chiesa d'Europa</li>
+                                <li>Persecuzione immediata</li>
+                                <li>Lettere più antiche del NT</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="reveal delay-4">
-                    <p style="margin-top: 40px; text-align: center; font-size: 1.3rem; color: var(--text);">Domanda: Le mie relazioni nutrono gli altri o li consumano?</p>
-                </div>
             </div>
         </div>
         
-        <!-- SLIDE 6: SECOND POINT -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Punto 2</span>
-                    <h2>Relazioni che Permangono</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>La separazione forzata tra Paolo e i Tessalonicesi rivela qualcosa di profondo: <strong>le relazioni cristiane non dipendono dalla presenza fisica</strong>. Legame spirituale supera la distanza.</p>
-                </div>
-                <div class="grid-2" style="margin-top: 40px;">
-                    <div class="reveal delay-2">
-                        <div class="verse-box">
-                            <p>"Noi però, fratelli, privati di voi per breve tempo, di persona non di cuore, abbiamo avuto tanto più viva la premura di vedervi. Per questo abbiamo voluto venire da voi... ma ci ha impedito Satana."</p>
-                            <span class="verse-ref">1 Tessalonicesi 2:17-18</span>
-                        </div>
-                    </div>
-                    <div class="reveal delay-3">
-                        <p>Paolo prova <strong>orfano</strong> della loro presenza. Manda Timoteo non per controllare, ma perché non può sopportare di non sapere come stanno. L'amore cristiano crea un legame che la distanza non può spezzare.</p>
-                        <div class="point-box" style="margin-top: 25px;">
-                            <p style="margin: 0; color: var(--text);">La vera comunione non è fisica ma spirituale. È condivisione di vita, non solo di spazio.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 7: SECOND POINT APPLICATION -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Dottrina</span>
-                    <h2>La Comunione dei Santi</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Il credo afferma: "Credo la comunione dei santi". Non è un optional. È essenza della chiesa. Non siamo chiamati a relazioni superficiali, ma a <strong>condivisione profonda di vita</strong>.</p>
-                </div>
-                <div class="reveal delay-2">
-                    <div class="verse-box">
-                        <p>"Ma Timoteo, giunto ora da voi a noi, ci ha recato buone notizie della vostra fede e del vostro amore, e del fatto che conservate sempre un buon ricordo di noi, desiderando di vederci come pure noi desideriamo vedere voi. Perciò, fratelli, in mezzo a tutte le nostre difficoltà e tribolazioni, siamo stati consolati a vostro riguardo, per la vostra fede."</p>
-                        <span class="verse-ref">1 Tessalonicesi 3:6-7</span>
-                    </div>
-                </div>
-                <div class="reveal delay-3">
-                    <div class="grid-2" style="margin-top: 40px;">
-                        <div class="icon-card">
-                            <span class="icon">🤝</span>
-                            <h4>Presenza Fisica</h4>
-                            <p>Importante ma temporanea. Limitata dal tempo e dallo spazio.</p>
-                        </div>
-                        <div class="icon-card">
-                            <span class="icon">💞</span>
-                            <h4>Presenza Spirituale</h4>
-                            <p>Eterna, non limitata. Basata sull'unità in Cristo.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 8: THIRD POINT -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Punto 3</span>
-                    <h2>Relazioni che Crescono</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Paolo non si accontenta della conversione iniziale. Vuole che i Tessalonicesi <strong>crescano</strong> nelle relazioni. La preghiera finale di 1 Tessalonicesi è esplicita: che l'amore aumenti.</p>
-                </div>
-                <div class="reveal delay-2">
-                    <div class="verse-box">
-                        <p>"E il Signore vi faccia crescere e abbondare nell'amore gli uni verso gli altri e verso tutti, come anche noi abbondiamo verso di voi; affinché renda saldi i vostri cuori, irreprensibili in santità, davanti a Dio e Padre nostro, alla venuta del Signore nostro Gesù, con tutti i suoi santi."</p>
-                        <span class="verse-ref">1 Tessalonicesi 3:12-13</span>
-                    </div>
-                </div>
-                <div class="reveal delay-3">
-                    <div class="grid-3" style="margin-top: 40px;">
-                        <div class="icon-card">
-                            <span class="icon">📈</span>
-                            <h4>Crescita</h4>
-                            <p>L'amore deve aumentare, non stagnare. Relazioni statiche muoiono.</p>
-                        </div>
-                        <div class="icon-card">
-                            <span class="icon">🎯</span>
-                            <h4>Qualità</h4>
-                            <p>"Irreprensibili in santità". Relazioni pure, senza compromessi.</p>
-                        </div>
-                        <div class="icon-card">
-                            <span class="icon">🔮</span>
-                            <h4>Prospettiva</h4>
-                            <p>Orientate all'eternità. Il ritorno di Cristo è lo scopo finale.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 9: THIRD POINT APPLICATION -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Applicazione</span>
-                    <h2>Come Crescono le Relazioni?</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Paolo dà istruzioni pratiche in 1 Tessalonicesi 5. Sono applicabili a ogni relazione cristiana:</p>
-                </div>
-                <div style="margin-top: 40px;">
-                    <div class="reveal delay-2" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.7); border-radius: 12px; border-left: 4px solid var(--accent);">
-                        <span style="font-size: 1.8rem; margin-right: 20px;">🏗️</span>
-                        <div>
-                            <h4 style="color: var(--accent); margin-bottom: 8px;">Edificatevi a vicenda</h4>
-                            <p style="margin: 0; font-size: 1rem;">"Edificatevi a vicenda" (5:11). Le parole costruiscono o distruggono. Scegliamo di edificare.</p>
-                        </div>
-                    </div>
-                    <div class="reveal delay-3" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.7); border-radius: 12px; border-left: 4px solid var(--accent-light);">
-                        <span style="font-size: 1.8rem; margin-right: 20px;">💪</span>
-                        <div>
-                            <h4 style="color: var(--accent-light); margin-bottom: 8px;">Sostenetevi a vicenda</h4>
-                            <p style="margin: 0; font-size: 1rem;">"Sostenetevi a vicenda" (5:11). Nel dolore, nella fatica, nell'incertezza. Portiamo i pesi degli altri.</p>
-                        </div>
-                    </div>
-                    <div class="reveal delay-4" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.7); border-radius: 12px; border-left: 4px solid var(--warm);">
-                        <span style="font-size: 1.8rem; margin-right: 20px;">⚠️</span>
-                        <div>
-                            <h4 style="color: var(--warm); margin-bottom: 8px;">Ammonitevi a vicenda</h4>
-                            <p style="margin: 0; font-size: 1rem;">"Ammonite i disordinati" (5:14). L'amore corretto. A volte l'amore deve essere duro per essere vero.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 10: FOURTH POINT -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Punto 4</span>
-                    <h2>Relazioni che Perseverano</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Nella seconda lettera, la situazione è peggiorata. La persecuzione si è intensificata. Eppure Paolo non dice: "Arrendetevi". Dice: <strong>"Non vi stancate di fare il bene"</strong>.</p>
-                </div>
-                <div class="grid-2" style="margin-top: 40px;">
-                    <div class="reveal delay-2">
-                        <div class="verse-box">
-                            <p>"Voi però, fratelli, non stancatevi di fare il bene. Se qualcuno non obbedisce a quella che è la nostra parola per questa lettera, notatelo e non abbiate relazioni con lui, affinché ne abbia vergogna; e non lo reputate come un nemico, ma ammonitelo come un fratello."</p>
-                            <span class="verse-ref">2 Tessalonicesi 3:13-15</span>
-                        </div>
-                    </div>
-                    <div class="reveal delay-3">
-                        <div class="point-box">
-                            <h4 style="color: var(--accent); margin-bottom: 20px;">Principi di Gestione dei Conflitti</h4>
-                            <ol style="padding-left: 20px; line-height: 2;">
-                                <li>Non stancarsi di fare il bene</li>
-                                <li>Confrontare il peccato apertamente</li>
-                                <li>Distanziarsi se necessario</li>
-                                <li>Non considerare nemico ma fratello</li>
-                                <li>Scopo: vergogna santa, non distruzione</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 11: FOURTH POINT DEEPER -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Dottrina</span>
-                    <h2>L'Amore che Corregge</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>La correzione fraterna è atto d'amore, non di vendetta. Paolo dice di non trattare la persona come nemico, ma di ammonirla come fratello. C'è una <strong>tensione</strong> qui: distanza e amore coesistono.</p>
-                </div>
-                <div class="reveal delay-2">
-                    <div class="grid-2" style="margin-top: 40px;">
-                        <div style="background: rgba(196,69,54,0.08); padding: 35px; border-radius: 16px; border: 1px solid rgba(196,69,54,0.3);">
-                            <h4 style="color: #e05a4a; margin-bottom: 15px;">⚠️ Scopo della Distanza</h4>
-                            <p style="font-size: 1rem;">Non è punizione. È <strong>vergogna santa</strong>. Lo scopo è il ripristino, non l'esclusione permanente. La speranza è sempre la riconciliazione.</p>
-                        </div>
-                        <div style="background: rgba(201,162,39,0.08); padding: 35px; border-radius: 16px; border: 1px solid rgba(201,162,39,0.3);">
-                            <h4 style="color: var(--accent); margin-bottom: 15px;">💝 Motivazione</h4>
-                            <p style="font-size: 1rem;">Agiamo "come fratelli". Anche nella correzione, l'identità della persona non cambia. Rimane famiglia, anche quando sbaglia.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal delay-3">
-                    <div class="verse-box" style="margin-top: 40px;">
-                        <p>"Se il tuo fratello ha peccato contro di te, va' e ammoniscilo fra te e lui solo; se ti ascolta, avrai guadagnato il tuo fratello."</p>
-                        <span class="verse-ref">Matteo 18:15</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 12: WORK RELATIONSHIPS -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Applicazione Pratica</span>
-                    <h2>Relazioni nel Lavoro</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>Il problema dell'"ozio" in 2 Tessalonicesi 3 è essenzialmente un <strong>problema relazionale</strong>. Alcuni non lavorano, diventano un peso per la comunità, "fanno ingerenza negli affari altrui".</p>
-                </div>
-                <div class="grid-2" style="margin-top: 40px;">
-                    <div class="reveal delay-2">
-                        <p>Paolo lavorava manualmente — faceva tende — per non essere di peso a nessuno. Questo ha implicazioni relazionali profonde: <strong>l'autonomia economica permette relazioni sane</strong>. Dipendere sempre dagli altri corrompe le dinamiche.</p>
-                        <div class="verse-box" style="margin-top: 25px;">
-                            <p>"Se qualcuno non vuole lavorare, ne mangi neppure."</p>
-                            <span class="verse-ref">2 Tessalonicesi 3:10</span>
-                        </div>
-                    </div>
-                    <div class="reveal delay-3">
-                        <div class="icon-card">
-                            <span class="icon">⚖️</span>
-                            <h4>Equilibrio</h4>
-                            <p>Le relazioni sante richiedono <strong>reciprocità</strong>. Dare e ricevere. Servire e essere serviti.</p>
-                        </div>
-                        <div class="point-box" style="margin-top: 20px;">
-                            <p style="margin: 0; font-size: 1rem;"><strong>Principio:</strong> Lavoriamo non solo per provvedere a noi stessi, ma per avere risorse da condividere con chi è nel bisogno (Efesini 4:28).</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 13: ESCHATOLOGICAL HOPE -->
-        <div class="slide">
-            <div class="content">
-                <div class="reveal">
-                    <span class="doctrine-badge">Speranza Escatologica</span>
-                    <h2>Relazioni Eterne</h2>
-                </div>
-                <div class="reveal delay-1">
-                    <p>La speranza del ritorno di Cristo non ci distrae dalle relazioni presenti — ce le rende più urgenti. Sappiamo che <strong>le relazioni cristiane non finiscono con la morte</strong>.</p>
-                </div>
-                <div class="reveal delay-2">
-                    <div class="verse-box">
-                        <p>"Infatti il Signore stesso, con un grido d'ordine, con voce d'arcangelo e con la tromba di Dio, scenderà dal cielo, e i morti in Cristo risusciteranno primi; poi noi, i viventi che saremo rimasti, verremo rapiti insieme con loro sulle nuvole, a incontrare il Signore nell'aria; e così saremo sempre con il Signore. Consolatevi dunque gli uni gli altri con queste parole."</p>
-                        <span class="verse-ref">1 Tessalonicesi 4:16-18</span>
-                    </div>
-                </div>
-                <div class="reveal delay-3">
-                    <p style="text-align: center; font-size: 1.3rem; color: var(--text); margin-top: 40px;"><strong>"Consolatevi dunque gli uni gli altri"</strong> — la speranza escatologica è strumento di cura relazionale.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDE 14: CONCLUSION -->
+        <!-- SLIDE 3: VERSE -->
         <div class="slide">
             <div class="content" style="text-align: center;">
                 <div class="reveal">
-                    <span class="doctrine-badge">Conclusione</span>
-                    <h2 style="font-size: 3.5rem;">La Pace del Signore</h2>
+                    <span style="font-size: 4rem;">💬</span>
                 </div>
                 <div class="reveal delay-1">
-                    <div style="max-width: 850px; margin: 50px auto; padding: 50px; background: linear-gradient(135deg, rgba(139, 105, 20, 0.06), rgba(160, 82, 45, 0.03)); border-radius: 24px; border: 1px solid rgba(139, 105, 20, 0.2); box-shadow: 0 4px 30px var(--shadow);">
-                        <p style="font-size: 1.5rem; font-style: italic; color: var(--text); line-height: 1.8; margin: 0;">
-                            "Il Signore della pace vi dia la pace sempre e in ogni modo. Il Signore sia con tutti voi."
-                        </p>
-                        <p style="font-size: 0.95rem; margin-top: 25px; color: var(--text-muted);">— 2 Tessalonicesi 3:16</p>
+                    <div class="verse-box" style="max-width: 800px; margin: 40px auto;">
+                        <p>"Eravamo pronti a darvi non solo il vangelo di Dio, ma anche le nostre anime, perché ci eravate divenuti carissimi."</p>
+                        <span class="verse-ref">1 Tessalonicesi 2:8 (NR2006)</span>
                     </div>
                 </div>
                 <div class="reveal delay-2">
-                    <div style="display: inline-block; text-align: left; background: rgba(255,255,255,0.7); padding: 40px 50px; border-radius: 16px; border: 1px solid rgba(139, 105, 20, 0.15);">
-                        <h4 style="color: var(--accent); margin-bottom: 20px; text-align: center;">Riepilogo</h4>
-                        <ul style="list-style: none; padding: 0; color: var(--text-muted); line-height: 2.2;">
-                            <li>✓ Relazioni che <strong>nutrono</strong> — come madre, padre, figlio</li>
-                            <li>✓ Relazioni che <strong>permanegono</strong> — oltre la distanza fisica</li>
-                            <li>✓ Relazioni che <strong>crescono</strong> — edificazione reciproca</li>
-                            <li>✓ Relazioni che <strong>perseverano</strong> — anche nel conflitto</li>
-                            <li>✓ Relazioni che <strong>sperano</strong> — orientate all'eternità</li>
-                        </ul>
+                    <span class="keyword">Fede = Relazione</span>
+                    <span class="keyword">Dare sé stessi</span>
+                    <span class="keyword">Amore autentico</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 4: THREE IMAGES -->
+        <div class="slide">
+            <div class="content">
+                <div class="reveal">
+                    <h2>Modello Paolo</h2>
+                </div>
+                <div class="icon-grid">
+                    <div class="reveal delay-1 icon-item">
+                        <span class="emoji">🤱</span>
+                        <h4>Madre</h4>
+                        <p>Nutre · Protegge · Sostiene</p>
+                    </div>
+                    <div class="reveal delay-2 icon-item">
+                        <span class="emoji">👨‍🏫</span>
+                        <h4>Padre</h4>
+                        <p>Esorta · Guida · Edifica</p>
+                    </div>
+                    <div class="reveal delay-3 icon-item">
+                        <span class="emoji">👶</span>
+                        <h4>Figlio</h4>
+                        <p>Serve · Umiltà · Dono</p>
+                    </div>
+                </div>
+                <div class="reveal delay-3" style="text-align: center; margin-top: 40px;">
+                    <span class="keyword-outline">Nessun potere</span>
+                    <span class="keyword-outline">Nessuna gloria</span>
+                    <span class="keyword">Solo amore</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 5: TABLE -->
+        <div class="slide">
+            <div class="content">
+                <div class="reveal">
+                    <h2>Relazioni</h2>
+                </div>
+                <div class="reveal delay-1">
+                    <div class="table-box">
+                        <table>
+                            <tr>
+                                <th>Mondane ❌</th>
+                                <th>Cristiane ✓</th>
+                            </tr>
+                            <tr>
+                                <td>Potere</td>
+                                <td>Servizio</td>
+                            </tr>
+                            <tr>
+                                <td>Interesse</td>
+                                <td>Dono</td>
+                            </tr>
+                            <tr>
+                                <td>Gloria</td>
+                                <td>Umiltà</td>
+                            </tr>
+                            <tr>
+                                <td>Usare</td>
+                                <td>Amare</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="reveal delay-2" style="text-align: center;">
+                    <span class="keyword">Domanda:</span>
+                    <span class="keyword-outline">Le mie relazioni nutrono o consumano?</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 6: BIG VERSE -->
+        <div class="slide">
+            <div class="content" style="text-align: center;">
+                <div class="reveal">
+                    <span style="font-size: 4rem;">💞</span>
+                </div>
+                <div class="reveal delay-1">
+                    <div class="verse-box" style="max-width: 850px; margin: 40px auto;">
+                        <p>"Seppure privati di voi per breve tempo, di persona non di cuore, abbiamo avuto tanto più viva la premura di vedervi."</p>
+                        <span class="verse-ref">1 Tessalonicesi 2:17 (NR2006)</span>
+                    </div>
+                </div>
+                <div class="reveal delay-2">
+                    <div style="display: flex; justify-content: center; gap: 50px; margin-top: 40px;">
+                        <div style="text-align: center;">
+                            <span style="font-size: 3rem;">🤝</span>
+                            <p style="margin-top: 10px;">Presenza fisica</p>
+                        </div>
+                        <div style="font-size: 2rem; color: var(--accent);">→</div>
+                        <div style="text-align: center;">
+                            <span style="font-size: 3rem;">💓</span>
+                            <p style="margin-top: 10px;">Presenza spirituale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 7: GROWTH -->
+        <div class="slide">
+            <div class="content">
+                <div class="reveal">
+                    <h2>Crescita</h2>
+                </div>
+                <div class="reveal delay-1">
+                    <div class="verse-box">
+                        <p>"E il Signore vi faccia crescere e abbondare nell'amore gli uni verso gli altri..."</p>
+                        <span class="verse-ref">1 Tessalonicesi 3:12 (NR2006)</span>
+                    </div>
+                </div>
+                <div class="reveal delay-2" style="margin-top: 40px;">
+                    <div class="icon-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div style="text-align: center; padding: 25px;">
+                            <span style="font-size: 2.5rem;">🏗️</span>
+                            <h4 style="margin: 15px 0;">Edifica</h4>
+                            <p style="font-size: 0.85rem;">5:11</p>
+                        </div>
+                        <div style="text-align: center; padding: 25px;">
+                            <span style="font-size: 2.5rem;">💪</span>
+                            <h4 style="margin: 15px 0;">Sostieni</h4>
+                            <p style="font-size: 0.85rem;">5:11</p>
+                        </div>
+                        <div style="text-align: center; padding: 25px;">
+                            <span style="font-size: 2.5rem;">⚠️</span>
+                            <h4 style="margin: 15px 0;">Ammoni</h4>
+                            <p style="font-size: 0.85rem;">5:14</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 8: CORRECTION -->
+        <div class="slide">
+            <div class="content">
+                <div class="reveal">
+                    <h2>Correzione</h2>
+                </div>
+                <div class="two-col">
+                    <div class="reveal delay-1">
+                        <div class="verse-box">
+                            <p>"Non lo reputate come un nemico, ma ammonitelo come un fratello."</p>
+                            <span class="verse-ref">2 Tessalonicesi 3:15 (NR2006)</span>
+                        </div>
+                    </div>
+                    <div class="reveal delay-2">
+                        <div class="col-box">
+                            <h4>Principi</h4>
+                            <ul class="bullet-list">
+                                <li>Non stancarti di fare il bene</li>
+                                <li>Confronta apertamente</li>
+                                <li>Distanza ≠ odio</li>
+                                <li>Scopo: ripristino</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 9: WORK -->
+        <div class="slide">
+            <div class="content">
+                <div class="reveal">
+                    <h2>Lavoro</h2>
+                </div>
+                <div class="reveal delay-1" style="text-align: center; margin: 30px 0;">
+                    <span style="font-size: 4rem;">⚖️</span>
+                </div>
+                <div class="reveal delay-2">
+                    <div class="verse-box" style="text-align: center;">
+                        <p>"Se qualcuno non vuole lavorare, ne mangi neppure."</p>
+                        <span class="verse-ref">2 Tessalonicesi 3:10 (NR2006)</span>
+                    </div>
+                </div>
+                <div class="reveal delay-3" style="text-align: center; margin-top: 30px;">
+                    <span class="keyword">Reciprocità</span>
+                    <span class="keyword">Autonomia</span>
+                    <span class="keyword">Servizio</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 10: HOPE -->
+        <div class="slide">
+            <div class="content" style="text-align: center;">
+                <div class="reveal">
+                    <h2>Speranza</h2>
+                </div>
+                <div class="reveal delay-1">
+                    <span style="font-size: 4rem;">☁️</span>
+                </div>
+                <div class="reveal delay-2">
+                    <div class="verse-box" style="max-width: 850px; margin: 30px auto;">
+                        <p>"I morti in Cristo risusciteranno primi; poi noi... verremo rapiti insieme con loro sulle nuvole, a incontrare il Signore nell'aria."</p>
+                        <span class="verse-ref">1 Tessalonicesi 4:16-17 (NR2006)</span>
                     </div>
                 </div>
                 <div class="reveal delay-3">
-                    <p style="margin-top: 50px; font-size: 1.2rem; color: var(--text-muted);">
-                        Predica basata su 1 & 2 Tessalonicesi<br>
-                        <span style="font-size: 0.9rem; opacity: 0.7;">Creata da JARVIS · Trascrizioni da The Bible Project</span>
-                    </p>
+                    <p style="font-size: 1.2rem; color: var(--text-light);">"Consolatevi dunque gli uni gli altri"</p>
+                    <span class="keyword-outline">Relazioni Eterne</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 11: SUMMARY -->
+        <div class="slide">
+            <div class="content">
+                <div class="reveal">
+                    <h2 style="text-align: center;">Riepilogo</h2>
+                </div>
+                <div class="reveal delay-1">
+                    <div class="icon-grid" style="margin-top: 20px;">
+                        <div class="icon-item">
+                            <span class="emoji">🤱</span>
+                            <h4>Nutrono</h4>
+                            <p>Madre · Padre · Figlio</p>
+                        </div>
+                        <div class="icon-item">
+                            <span class="emoji">💞</span>
+                            <h4>Permangono</h4>
+                            <p>Oltre la distanza</p>
+                        </div>
+                        <div class="icon-item">
+                            <span class="emoji">📈</span>
+                            <h4>Crescono</h4>
+                            <p>Edifica · Sostieni · Ammoni</p>
+                        </div>
+                        <div class="icon-item">
+                            <span class="emoji">⚔️</span>
+                            <h4>Perseverano</h4>
+                            <p>Non stancarti</p>
+                        </div>
+                        <div class="icon-item">
+                            <span class="emoji">☁️</span>
+                            <h4>Sperano</h4>
+                            <p>Relazioni eterne</p>
+                        </div>
+                        <div class="icon-item">
+                            <span class="emoji">⚖️</span>
+                            <h4>Servono</h4>
+                            <p>Lavoro · Reciprocità</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 12: END -->
+        <div class="slide">
+            <div class="content" style="text-align: center;">
+                <div class="reveal">
+                    <span style="font-size: 4rem;">✝️</span>
+                </div>
+                <div class="reveal delay-1">
+                    <div class="verse-box" style="max-width: 750px; margin: 40px auto;">
+                        <p>"Il Signore della pace vi dia la pace sempre e in ogni modo. Il Signore sia con tutti voi."</p>
+                        <span class="verse-ref">2 Tessalonicesi 3:16 (NR2006)</span>
+                    </div>
+                </div>
+                <div class="reveal delay-2">
+                    <span class="keyword">Santità</span>
+                    <span class="keyword">Amore</span>
+                    <span class="keyword">Speranza</span>
                 </div>
             </div>
         </div>
@@ -763,7 +684,7 @@
     
     <div class="nav-controls">
         <button class="nav-btn" onclick="prevSlide()">←</button>
-        <span class="nav-text">Clicca o usa frecce</span>
+        <span style="color: var(--text-light); font-size: 0.85rem;">Clicca o frecce</span>
         <button class="nav-btn" onclick="nextSlide()">→</button>
     </div>
     
