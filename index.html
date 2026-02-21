@@ -9,16 +9,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg: #0a0908;
-            --surface: #141210;
-            --surface-light: #1c1915;
-            --text: #faf8f5;
-            --text-muted: #9a9590;
-            --accent: #c9a227;
-            --accent-light: #e0c97a;
-            --warm: #b87333;
+            --bg: #f5f0e8;
+            --surface: #faf6f0;
+            --surface-light: #fffdfa;
+            --text: #1a1814;
+            --text-muted: #6b6560;
+            --accent: #8b6914;
+            --accent-light: #b8934a;
+            --warm: #a0522d;
             --red: #c44536;
             --blue: #4a6fa5;
+            --shadow: rgba(26, 24, 20, 0.08);
         }
         
         body {
@@ -40,7 +41,7 @@
             inset: 0;
             display: none;
             padding: 80px 100px;
-            background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
+            background: linear-gradient(135deg, #f5f0e8 0%, #ebe5d8 100%);
             opacity: 0;
             transition: opacity 0.8s ease;
         }
@@ -59,8 +60,8 @@
             position: absolute;
             inset: 0;
             background: 
-                radial-gradient(ellipse at 30% 70%, rgba(201,162,39,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 30%, rgba(184,115,51,0.04) 0%, transparent 50%);
+                radial-gradient(ellipse at 20% 80%, rgba(139, 105, 20, 0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(160, 82, 45, 0.03) 0%, transparent 50%);
             pointer-events: none;
         }
         
@@ -78,7 +79,7 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, #1a1814 0%, #8b6914 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -126,7 +127,7 @@
         .delay-5 { transition-delay: 0.75s; }
         
         .verse-box {
-            background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(184,115,51,0.06));
+            background: linear-gradient(135deg, rgba(139, 105, 20, 0.08), rgba(160, 82, 45, 0.04));
             border-left: 4px solid var(--accent);
             padding: 30px 35px;
             margin: 30px 0;
@@ -150,8 +151,8 @@
         }
         
         .point-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(201,162,39,0.25);
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(139, 105, 20, 0.2);
             border-radius: 16px;
             padding: 35px;
             margin: 25px 0;
@@ -189,9 +190,10 @@
         .icon-card {
             text-align: center;
             padding: 40px 25px;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255,255,255,0.8);
             border-radius: 20px;
-            border: 1px solid rgba(201,162,39,0.2);
+            border: 1px solid rgba(139, 105, 20, 0.15);
+            box-shadow: 0 4px 20px var(--shadow);
         }
         
         .icon-card .icon {
@@ -246,7 +248,7 @@
         .nav-btn {
             width: 50px;
             height: 50px;
-            border: 2px solid rgba(201,162,39,0.3);
+            border: 2px solid rgba(139, 105, 20, 0.25);
             background: transparent;
             color: var(--accent);
             border-radius: 50%;
@@ -274,6 +276,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d0 100%);
         }
         
         .subtitle {
@@ -403,17 +406,17 @@
                     <p>Paolo descrive il suo ministero usando tre immagini familiari potenti: <strong>madre</strong>, <strong>padre</strong>, e <strong>figlio</strong>. Ognuna rivela un aspetto essenziale delle relazioni cristiane.</p>
                 </div>
                 <div class="grid-3" style="margin-top: 40px;">
-                    <div class="reveal delay-2" style="background: rgba(255,255,255,0.02); padding: 35px; border-radius: 16px; border-top: 3px solid var(--accent);">
+                    <div class="reveal delay-2" style="background: rgba(255,255,255,0.7); padding: 35px; border-radius: 16px; border-top: 3px solid var(--accent);">
                         <div style="font-size: 2.5rem; margin-bottom: 15px;">🤱</div>
                         <h4 style="color: var(--accent); margin-bottom: 12px;">Come una Madre</h4>
                         <p style="font-size: 1rem;">"Vi abbiamo nutriti col latte". Cura tenera, protezione, sostegno emotivo. Le relazioni cristiane devono <strong>nutrire</strong> spiritualmente.</p>
                     </div>
-                    <div class="reveal delay-3" style="background: rgba(255,255,255,0.02); padding: 35px; border-radius: 16px; border-top: 3px solid var(--accent-light);">
+                    <div class="reveal delay-3" style="background: rgba(255,255,255,0.7); padding: 35px; border-radius: 16px; border-top: 3px solid var(--accent-light);">
                         <div style="font-size: 2.5rem; margin-bottom: 15px;">👨‍🏫</div>
                         <h4 style="color: var(--accent-light); margin-bottom: 12px;">Come un Padre</h4>
                         <p style="font-size: 1rem;">"Vi esortavamo, vi confortavamo". Guida, esortazione, incoraggiamento. Le relazioni cristiane devono <strong>edificare</strong>.</p>
                     </div>
-                    <div class="reveal delay-4" style="background: rgba(255,255,255,0.02); padding: 35px; border-radius: 16px; border-top: 3px solid var(--warm);">
+                    <div class="reveal delay-4" style="background: rgba(255,255,255,0.7); padding: 35px; border-radius: 16px; border-top: 3px solid var(--warm);">
                         <div style="font-size: 2.5rem; margin-bottom: 15px;">👶</div>
                         <h4 style="color: var(--warm); margin-bottom: 12px;">Come un Figlio</h4>
                         <p style="font-size: 1rem;">"Mansueti come una balia". Umiltà, disponibilità a servire. Le relazioni cristiane richiedono <strong>umiltà</strong>.</p>
@@ -577,21 +580,21 @@
                     <p>Paolo dà istruzioni pratiche in 1 Tessalonicesi 5. Sono applicabili a ogni relazione cristiana:</p>
                 </div>
                 <div style="margin-top: 40px;">
-                    <div class="reveal delay-2" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.02); border-radius: 12px; border-left: 4px solid var(--accent);">
+                    <div class="reveal delay-2" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.7); border-radius: 12px; border-left: 4px solid var(--accent);">
                         <span style="font-size: 1.8rem; margin-right: 20px;">🏗️</span>
                         <div>
                             <h4 style="color: var(--accent); margin-bottom: 8px;">Edificatevi a vicenda</h4>
                             <p style="margin: 0; font-size: 1rem;">"Edificatevi a vicenda" (5:11). Le parole costruiscono o distruggono. Scegliamo di edificare.</p>
                         </div>
                     </div>
-                    <div class="reveal delay-3" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.02); border-radius: 12px; border-left: 4px solid var(--accent-light);">
+                    <div class="reveal delay-3" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.7); border-radius: 12px; border-left: 4px solid var(--accent-light);">
                         <span style="font-size: 1.8rem; margin-right: 20px;">💪</span>
                         <div>
                             <h4 style="color: var(--accent-light); margin-bottom: 8px;">Sostenetevi a vicenda</h4>
                             <p style="margin: 0; font-size: 1rem;">"Sostenetevi a vicenda" (5:11). Nel dolore, nella fatica, nell'incertezza. Portiamo i pesi degli altri.</p>
                         </div>
                     </div>
-                    <div class="reveal delay-4" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.02); border-radius: 12px; border-left: 4px solid var(--warm);">
+                    <div class="reveal delay-4" style="display: flex; align-items: flex-start; margin: 25px 0; padding: 25px 30px; background: rgba(255,255,255,0.7); border-radius: 12px; border-left: 4px solid var(--warm);">
                         <span style="font-size: 1.8rem; margin-right: 20px;">⚠️</span>
                         <div>
                             <h4 style="color: var(--warm); margin-bottom: 8px;">Ammonitevi a vicenda</h4>
@@ -728,7 +731,7 @@
                     <h2 style="font-size: 3.5rem;">La Pace del Signore</h2>
                 </div>
                 <div class="reveal delay-1">
-                    <div style="max-width: 850px; margin: 50px auto; padding: 50px; background: linear-gradient(135deg, rgba(201,162,39,0.1), rgba(184,115,51,0.05)); border-radius: 24px; border: 1px solid rgba(201,162,39,0.3);">
+                    <div style="max-width: 850px; margin: 50px auto; padding: 50px; background: linear-gradient(135deg, rgba(139, 105, 20, 0.06), rgba(160, 82, 45, 0.03)); border-radius: 24px; border: 1px solid rgba(139, 105, 20, 0.2); box-shadow: 0 4px 30px var(--shadow);">
                         <p style="font-size: 1.5rem; font-style: italic; color: var(--text); line-height: 1.8; margin: 0;">
                             "Il Signore della pace vi dia la pace sempre e in ogni modo. Il Signore sia con tutti voi."
                         </p>
@@ -736,7 +739,7 @@
                     </div>
                 </div>
                 <div class="reveal delay-2">
-                    <div style="display: inline-block; text-align: left; background: rgba(255,255,255,0.02); padding: 40px 50px; border-radius: 16px; border: 1px solid rgba(201,162,39,0.2);">
+                    <div style="display: inline-block; text-align: left; background: rgba(255,255,255,0.7); padding: 40px 50px; border-radius: 16px; border: 1px solid rgba(139, 105, 20, 0.15);">
                         <h4 style="color: var(--accent); margin-bottom: 20px; text-align: center;">Riepilogo</h4>
                         <ul style="list-style: none; padding: 0; color: var(--text-muted); line-height: 2.2;">
                             <li>✓ Relazioni che <strong>nutrono</strong> — come madre, padre, figlio</li>
