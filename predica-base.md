@@ -23,8 +23,8 @@ Le lettere ai Tessalonicesi (50-51 d.C.) sono le più antiche del Nuovo Testamen
 - In sole 3 settimane nasce la prima chiesa d'Europa
 - Immediata persecuzione costringe Paolo alla fuga notturna
 
-**Perché è importante:**
-Questa comunità nasce nel dolore. Non hanno avuto il lusso di una crescita comoda. Hanno dovuto imparare subito cosa significa seguire Gesù quando la vita è difficile.
+**Perché è importante (1Tess 1:6; 2:14):**
+Questa comunità nasce nel dolore. Non hanno avuto il lusso di una crescita comoda. Hanno dovuto imparare subito cosa significa seguire Gesù quando la vita è difficile. Paolo li chiama "imitatori di noi e del Signore" proprio per questa loro capacità di ricevere il Vangelo con gioia nonostante la tribolazione.
 
 ---
 
@@ -113,19 +113,22 @@ Paolo introduce una distinzione fondamentale: essere "di persona" vs essere "di 
 **Versetto chiave:**
 "E il Signore vi faccia crescere e abbondare nell'amore gli uni verso gli altri..." (1Tess 3:12)
 
-**Paolo non si accontenta della conversione iniziale.** Vuole crescita costante. Da 1Tess 5:11-14 estrae tre azioni:
+**Paolo non si accontenta della conversione iniziale (1Tess 3:12).** Vuole crescita costante. Estrae tre azioni concrete:
 
-**1. Edificatevi (5:11)**
+**1. Edificatevi (1Tess 5:11)**
+- "Edificatevi dunque gli uni gli altri"
 - Costruire con le parole, non demolire
 - Ogni conversazione può essere un mattone o una pala
 - Edificare = incoraggiare, affermare, confermare
 
-**2. Sostenetevi (5:11)**
-- Portare i pesi degli altri (Gal 6:2)
+**2. Sostenetevi (1Tess 5:11; Gal 6:2)**
+- "Sostenetevi a vicenda"
+- Portare i pesi degli altri
 - Non giudicare chi è debole
 - Essere "spalla" nel dolore
 
-**3. Ammonite (5:14)**
+**3. Ammonite (1Tess 5:14; Mt 18:15-17)**
+- "Ammonite i disordinati"
 - L'amore corretto a volte deve essere duro
 - Scopo: ripristino, non punizione
 - Matteo 18:15-17 — procedura di correzione
@@ -135,8 +138,8 @@ Paolo introduce una distinzione fondamentale: essere "di persona" vs essere "di 
 ## SLIDE 8: Correzione — 2Tess 3:13-15
 **Visual:** Versetto + box principi
 
-**Situazione:**
-Nella seconda lettera la persecuzione è peggiorata. Alcuni hanno perso la motivazione. Altri vivono nel disordine. Paolo non dice "arrendetevi". Dice "non stancatevi di fare il bene".
+**Situazione (2Tess 3:11-13):**
+Nella seconda lettera la persecuzione è peggiorata. Alcuni hanno perso la motivazione. Altri vivono nel disordine e "fanno ingerenza negli affari altrui". Paolo non dice "arrendetevi". Dice: "Voi però, fratelli, non stancatevi di fare il bene" (2Tess 3:13).
 
 **Versetto:**
 "Non lo reputate come un nemico, ma ammonitelo come un fratello." (NR2006)
@@ -155,8 +158,8 @@ Distanza e amore coesistono. Ammonire è atto d'amore, non vendetta. L'identità
 ## SLIDE 9: Lavoro — 2Tess 3:10
 **Visual:** Icona bilancia + citazione
 
-**Problema:**
-Alcuni a Tessalonica "non lavorano, ma fanno ingerenza negli affari altrui" (2Tess 3:11). Il greco "ataktos" significa disordinato, irresponsabile.
+**Problema (2Tess 3:6-12):**
+Alcuni a Tessalonica "non lavorano, ma fanno ingerenza negli affari altrui" (2Tess 3:11). Il greco "ataktos" significa disordinato, irresponsabile. Vivono come parassiti della comunità.
 
 **Cause possibili:**
 - Pensavano che Gesù tornasse subito (escatologismo disfunzionale)
@@ -166,8 +169,8 @@ Alcuni a Tessalonica "non lavorano, ma fanno ingerenza negli affari altrui" (2Te
 **Versetto:**
 "Se qualcuno non vuole lavorare, ne mangi neppure." (NR2006)
 
-**Implicazione relazionale:**
-L'autonomia economica permette relazioni sane. Dipendere sempre dagli altri corrompe le dinamiche. Paolo lavorava come tessitore di tende per non essere di peso.
+**Implicazione relazionale (2Tess 3:8; At 18:3):**
+L'autonomia economica permette relazioni sane. Dipendere sempre dagli altri corrompe le dinamiche. Paolo lavorava come tessitore di tende (At 18:3) per non essere di peso (2Tess 3:8).
 
 **Principio:** Reciprocità. Dare e ricevere. Servire ed essere serviti.
 
@@ -176,8 +179,8 @@ L'autonomia economica permette relazioni sane. Dipendere sempre dagli altri corr
 ## SLIDE 10: Speranza — 1Tess 4:16-17
 **Visual:** Icona nuvole + citazione
 
-**Problema angosciante:**
-Alcuni credenti erano morti. I superstiti temevano fossero esclusi dal ritorno di Cristo.
+**Problema angosciante (1Tess 4:13):**
+Alcuni credenti erano morti. I superstiti temevano fossero esclusi dal ritorno di Cristo. Paolo scrive per confortarli: "Non vogliamo che ignoriate, fratelli, riguardo a quelli che dormono, affinché non siate tristi come gli altri che non hanno speranza" (1Tess 4:13).
 
 **Risposta di Paolo:**
 La morte non separa i cristiani dall'amore di Cristo. La speranza escatologica è strumento di cura relazionale.
