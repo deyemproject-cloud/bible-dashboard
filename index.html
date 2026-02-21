@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettere ai Tessalonicesi - Dashboard Vintage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f4e8d0;
+            --paper-dark: #e8d4b8;
+            --ink: #3d2914;
+            --ink-light: #6b4423;
+            --accent: #8b4513;
+            --gold: #b8860b;
+            --red: #8b0000;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* TEXTURE CARTA VECCHIA */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 69, 19, 0.03) 2px,
+                    rgba(139, 69, 19, 0.03) 4px
+                ),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 3px double var(--accent);
+            background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
+            position: relative;
+        }
+        
+        header::before, header::after {
+            content: '❦';
+            position: absolute;
+            font-size: 2rem;
+            color: var(--gold);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        header::before { left: 10%; }
+        header::after { right: 10%; }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: var(--ink-light);
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* NAVIGAZIONE */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--paper-dark);
+            border-bottom: 1px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            font-family: 'Cinzel', serif;
+            padding: 12px 24px;
+            background: var(--paper);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .nav-btn::before {
+            content: '✦';
+            position: absolute;
+            left: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent);
+            color: var(--paper);
+        }
+        
+        .nav-btn:hover::before, .nav-btn.active::before {
+            opacity: 1;
+        }
+        
+        /* CONTENUTO SLIDES */
+        .slides-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* CARD LIBRO */
+        .book-card {
+            background: linear-gradient(135deg, var(--paper) 0%, var(--paper-dark) 100%);
+            border: 3px double var(--accent);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 4px 20px rgba(139, 69, 19, 0.2),
+                inset 0 0 60px rgba(139, 69, 19, 0.05);
+            position: relative;
+        }
+        
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            pointer-events: none;
+        }
+        
+        .book-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--paper);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            border: 3px solid var(--paper);
+        }
+        
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--ink-light);
+            margin: 30px 0 15px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 8px;
+        }
+        
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        /* ILLUSTRAZIONI */
+        .illustration {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(139, 69, 19, 0.05);
+            border: 1px dashed var(--accent);
+            border-radius: 4px;
+        }
+        
+        .illustration-symbol {
+            font-size: 3rem;
+            color: var(--gold);
+        }
+        
+        .illustration-caption {
+            font-style: italic;
+            color: var(--ink-light);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* SEZIONI */
+        .section {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(244, 232, 208, 0.5);
+            border-left: 4px solid var(--gold);
+        }
+        
+        .quote {
+            font-style: italic;
+            color: var(--ink-light);
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+        
+        /* CONTROLLI NAVIGAZIONE */
+        .slide-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px double var(--accent);
+        }
+        
+        .control-btn {
+            font-family: 'Cinzel', serif;
+            padding: 10px 20px;
+            background: var(--paper-dark);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: var(--accent);
+            color: var(--paper);
+        }
+        
+        .slide-counter {
+            font-family: 'Cinzel', serif;
+            color: var(--ink-light);
+        }
+        
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 3px double var(--accent);
+            background: var(--paper-dark);
+        }
+        
+        footer p {
+            text-align: center;
+            font-style: italic;
+            color: var(--ink-light);
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .nav-container { flex-wrap: wrap; gap: 10px; }
+            .nav-btn { padding: 10px 16px; font-size: 0.8rem; }
+            .book-card { padding: 25px; }
+            h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>✦ Lettere ai Tessalonicesi ✦</h1>
+        <p class="subtitle">Un viaggio attraverso le epistole di Paolo</p>
+    </header>
+    
+    <nav class="nav-container">
+        <button class="nav-btn active" onclick="showSlide(0)">Introduzione</button>
+        <button class="nav-btn" onclick="showSlide(1)">1 Tessalonicesi</button>
+        <button class="nav-btn" onclick="showSlide(2)">2 Tessalonicesi</button>
+        <button class="nav-btn" onclick="showSlide(3)">Confronto</button>
+    </nav>
+    
+    <div class="slides-container">
+        <!-- SLIDE 0: INTRODUZIONE -->
+        <div class="slide active">
+            <div class="book-card">
+                <div class="illustration">
+                    <div class="illustration-symbol">📜✝️📜</div>
+                    <p class="illustration-caption">Le Lettere di Paolo ai Tessalonicesi</p>
+                </div>
+                
+                <h2>Introduzione Storica</h2>
+                
+                <p>Le due lettere di Paolo ai Tessalonicesi sono considerate le più antiche lettere del Nuovo Testamento, scritte intorno al 50-51 d.C. da Paolo e Silas alla comunità cristiana di Tessalonica, una città della Grecia antica.</p>
+                
+                <div class="illustration">
+                    <div class="illustration-symbol">🏛️🌊🏛️</div>
+                    <p class="illustration-caption">Tessalonica, importante porto greco dell'antichità</p>
+                </div>
+                
+                <div class="section">
+                    <h3>🗺️ Il Contesto Storico</h3>
+                    <p>Paolo e Silas arrivarono a Tessalonica dopo aver predicato nelle città di Filippi e Anfipoli. In soli tre settimane di ministero, una grande numero di Ebrei e Greci abbracciarono la fede in Gesù, formando la prima comunità cristiana della città.</p>
+                    <p>Tuttavia, l'annuncio di Gesù come vero Signore del mondo suscitò sospetto e ostilità. I cristiani furono accusati di tradire Cesare proclamando un altro re, Gesù. La persecuzione divenne così intensa che Paolo e Silas dovettero fuggire di notte.</p>
+                </div>
+                
+                <div class="section">
+                    <h3>✍️ Le Due Lettere</h3>
+                    <p><strong>Prima Lettera:</strong> Scritta poco dopo la fuga, quando Paolo ricevette notizie positive da Timoteo sulla fede dei Tessalonicesi. È una lettera di incoraggiamento e istruzione.</p>
+                    <p><strong>Seconda Lettera:</strong> Scritta poco dopo la prima, quando Paolo apprese che i problemi erano peggiorati. Affronta persecuzioni più intense e confusioni sul ritorno di Gesù.</p>
+                </div>
+                
+                <div class="illustration">
+                    <div class="illustration-symbol">🕊️⚔️👑</div>
+                    <p class="illustration-caption">Santità, Amore e Speranza - I temi centrali</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 1: 1 TESSALONICESI -->
+        <div class="slide">
+            <div class="book-card">
+                <div class="book-number">I</div>
+                <div class="illustration">
+                    <div class="illustration-symbol">📖✨</div>
+                    <p class="illustration-caption">La Prima Lettera di Paolo ai Tessalonicesi</p>
+                </div>
+                
+                <h2>1 Tessalonicesi</h2>
+                <p class="subtitle">La Lettera più Antica del Nuovo Testamento</p>
+                
+                <div class="section">
+                    <h3>🎯 Struttura della Lettera</h3>
+                    <p>La lettera è strutturata in <strong>due movimenti principali</strong> circondati da <strong>tre preghiere</strong>:</p>
+                    <ul style="margin: 15px 0 15px 30px; line-height: 2;">
+                        <li><strong>Preghiera di Ringraziamento</strong> - Apertura</li>
+                        <li><strong>Movimento 1:</strong> Celebrazione della loro fede</li>
+                        <li><strong>Preghiera Transizionale</strong> - Collegamento</li>
+                        <li><strong>Movimento 2:</strong> Sfida alla crescita spirituale</li>
+                        <li><strong>Preghiera Finale</strong> - Conclusione</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h3>🙏 Apertura: Ringraziamento per la Fede</h3>
+                    <p>Paolo inizia ringraziando Dio per tre virtù dei Tessalonicesi:</p>
+                    <div class="quote">
+                        "Ricordiamo davanti a Dio e Padre nostro la vostra fede operosa, la vostra carità laboriosa e la vostra speranza costante nel Signore nostro Gesù Cristo."
+                    </div>
+                    <div class="illustration">
+                        <div class="illustration-symbol">💫❤️🙏</div>
+                        <p class="illustration-caption">Fede, Carità, Speranza - Le tre virtù teologali</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🔄 La Storia della Conversione</h3>
+                    <p>Paolo ricorda come i Tessalonicesi erano precedentemente <strong>idolatri politeisti</strong>, immersi in una cultura dove ogni aspetto della vita era permeato da pratiche che onoravano gli dei greci.</p>
+                    <p>Loro <strong>si sono voltati dagli idoli</strong> per servire il Dio vivente e vero, aspettando l'avvento del Figlio di Dio dal cielo.</p>
+                    <div class="illustration">
+                        <div class="illustration-symbol">🏺➡️✝️</div>
+                        <p class="illustration-caption">Dagli idoli al Dio vivente</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>👨‍👩‍👧‍👦 Metafore Familiari</h3>
+                    <p>Paolo usa metafore intime per descrivere il suo rapporto con la comunità:</p>
+                    <div class="quote">
+                        "Eravamo pronti a darvi non solo il Vangelo di Dio, ma anche le nostre vite, perché ci eravate diventati carissimi."
+                    </div>
+                    <p>Descrive se stesso come una <strong>madre che nutre</strong> i propri figli e come un <strong>padre che esorta</strong> i propri figli amati.</p>
+                </div>
+                
+                <div class="section">
+                    <h3>⚔️ La Persecuzione come Partecipazione</h3>
+                    <p>Paolo trova conforto nel sapere che le sofferenze condivise sono un modo di <strong>partecipare alla storia di Gesù</strong>. Proprio come Gesù fu rifiutato e ucciso dal suo popolo, così ora Paolo è perseguitato dai suoi connazionali ebrei, e i Tessalonicesi affrontano ostilità dai loro vicini greci.</p>
+                    <div class="illustration">
+                        <div class="illustration-symbol">✝️🤝👥</div>
+                        <p class="illustration-caption">Partecipare alle sofferenze di Cristo</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>💑 Impegno alla Santità e Purezza</h3>
+                    <p>Paolo sfida i Tessalonicesi a vivere in modo coerente con gli insegnamenti di Gesù:</p>
+                    <ul style="margin: 15px 0 15px 30px; line-height: 2;">
+                        <li>Impegno serio alla <strong>santità</strong> e purezza sessuale</li>
+                        <li>Vivere il sesso nella bellezza del <strong>matrimonio</strong></li>
+                        <li>Amare e servire gli altri con <strong>dedizione</strong></li>
+                        <li>Lavorare sodo per provvedere a sé e ai bisognosi</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h3>☁️ La Speranza del Ritorno di Gesù</h3>
+                    <p>Paolo affronta la domanda sui cristiani morti: quando Gesù ritornerà come re, <strong>non solo i vivi ma anche i morti</strong> risponderanno alla sua chiamata.</p>
+                    <div class="quote">
+                        "I morti in Cristo risusciteranno prima; poi noi, i viventi che saremo rimasti, verremo rapiti insieme con loro sulle nuvole, per andare incontro al Signore nell'aria."
+                    </div>
+                    <div class="illustration">
+                        <div class="illustration-symbol">☁️👑🎺</div>
+                        <p class="illustration-caption">L'incontro con il Signore nell'aria</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🌅 Vegliare e Sorvegliare</h3>
+                    <p>Paolo contrasta la propaganda romana che attribuisce a Cesare la pace e la sicurezza. Avverte che Gesù ritornerà come re un giorno e affronterà l'ingiustizia. I seguaci di Gesù dovrebbero vivere nel presente come se quel giorno futuro fosse già qui.</p>
+                    <div class="quote">
+                        "Non dormite come fanno gli altri, ma vegliate e siate sobri."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 2: 2 TESSALONICESI -->
+        <div class="slide">
+            <div class="book-card">
+                <div class="book-number">II</div>
+                <div class="illustration">
+                    <div class="illustration-symbol">📜⚡</div>
+                    <p class="illustration-caption">La Seconda Lettera di Paolo ai Tessalonicesi</p>
+                </div>
+                
+                <h2>2 Tessalonicesi</h2>
+                <p class="subtitle">Speranza e Chiara Visione del Futuro</p>
+                
+                <div class="section">
+                    <h3>⚠️ Tre Problemi Crescenti</h3>
+                    <p>Poco dopo la prima lettera, Paolo ricevette notizie che i problemi non solo erano continuati, ma erano <strong>peggiorati</strong>:</p>
+                    <ol style="margin: 15px 0 15px 30px; line-height: 2;">
+                        <li><strong>Persecuzioni intensificate</strong></li>
+                        <li><strong>Confusione sul ritorno di Gesù</strong></li>
+                        <li><strong>Problema dell'ozio</strong> (rifiuto di lavorare)</li>
+                    </ol>
+                    <div class="illustration">
+                        <div class="illustration-symbol">⚔️❓😴</div>
+                        <p class="illustration-caption">I tre problemi affrontati nella seconda lettera</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🙏 Speranza nella Persecuzione</h3>
+                    <p>Paolo apre con una preghiera di ringraziamento per la <strong>costanza</strong> dei Tessalonicesi. Hanno appreso che vicini greci, romani e forse ebrei hanno intensificato la persecuzione.</p>
+                    <p>Paolo ricorda che soffrire a causa di Gesù è un modo di <strong>partecipare al regno di Dio</strong>. Gesù fu inaugurato come re attraverso la sua sofferenza sulla croce, e così i suoi seguaci mostreranno la vittoria sul mondo imitando la non-violenza e la paziente costanza di Gesù.</p>
+                    <div class="quote">
+                        "A questo vi chiama Dio: perché diventaste partecipi della gloria del nostro Signore Gesù Cristo."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>👑 Giustizia Divina</h3>
+                    <p>Paolo promette che quando Gesù ritornerà, porterà giustizia su chi li ha oppressi e versato il sangue degli innocenti:</p>
+                    <div class="quote">
+                        "Il loro castigo sarà la distruzione eterna, l'esclusione dal volto del Signore e dalla gloria della sua potenza."
+                    </div>
+                    <p>Paolo non specula sul destino di chi rifiuta Gesù, ma dice che coloro che nella vita non volevano nulla da Gesù, alla fine ottengono ciò che vogliono: <strong>distanza relazionale dal loro creatore</strong>.</p>
+                    <div class="illustration">
+                        <div class="illustration-symbol">⚖️🔥👑</div>
+                        <p class="illustration-caption">Il giudizio divino e la giustizia finale</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>📅 Chiarezza sul Giorno del Signore</h3>
+                    <p>Qualcuno nella chiesa stava diffondendo false informazioni nel nome di Paolo, dicendo che <strong>il giorno del Signore era già venuto</strong>. Questo spaventava i cristiani, facendoli pensare di essere stati lasciati indietro.</p>
+                    <p>Paolo si arrabbia: il ritorno di Gesù dovrebbe ispirare <strong>speranza e fiducia</strong>, non paura!</p>
+                    <div class="quote">
+                        "Che nessuno vi inganni in alcun modo, perché quel giorno non verrà senza che prima venga l'apostasia e sia stato rivelato l'uomo dell'iniquità."
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🎭 Il Mistero dell'Iniquità</h3>
+                    <p>Paolo cita i profeti Isaia e Daniele: i regni di questo mondo produrranno sempre governanti che si ribellano a Dio. Questi leader si esaltano fino all'autorità divina.</p>
+                    <p>Paolo vedeva questo modello adempiersi nei suoi giorni negli imperatori romani <strong>Caligola e Nerone</strong>, e si aspettava che si ripetesse fino alla culminazione della storia.</p>
+                    <div class="illustration">
+                        <div class="illustration-symbol">👤⚡👑</div>
+                        <p class="illustration-caption">Il Figlio dell'uomo che viene sulle nuvole</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>💪 Conforto e Fedeltà</h3>
+                    <p>Paolo rassicura i Tessalonicesi: gli eventi che precederanno il ritorno di Gesù saranno <strong>pubblici e ovvi</strong>. Non c'è bisogno di aver paura di essere stati lasciati indietro.</p>
+                    <p>Invoca il conforto di Gesù e del Padre per rafforzarli nella fede.</p>
+                </div>
+                
+                <div class="section">
+                    <h3>🔨 Il Problema dell'Ozio</h3>
+                    <p>L'ozio non significa solo pigrizia. Si riferisce a persone <strong>irresponsabili che rifiutano di lavorare</strong>, risultando in vite caotiche.</p>
+                    <p>Paolo ricorda il suo esempio: non ha chiesto denaro, ha lavorato manualmente per provvedere a sé stesso e per servire gratuitamente i Tessalonicesi.</p>
+                    <div class="quote">
+                        "Se qualcuno non vuole lavorare, neppure mangi."
+                    </div>
+                    <p>Questo problema potrebbe essere collegato al patronato romano: povere persone diventavano "clienti" di ricchi, vivendo della loro generosità occasionale con molte condizioni corruttrici.</p>
+                    <div class="illustration">
+                        <div class="illustration-symbol">🔨📜💰</div>
+                        <p class="illustration-caption">Lavorare con diligenza e integrità</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>🕊️ Preghiera Finale di Pace</h3>
+                    <p>Paolo conclude con una preghiera che nel mezzo di tutta la confusione e sofferenza, Dio conceda loro pace attraverso il Signore Gesù il Messia.</p>
+                    <div class="quote">
+                        "Il Signore della pace vi dia pace in ogni momento e in ogni modo. Il Signore sia con tutti voi."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SLIDE 3: CONFRONTO -->
+        <div class="slide">
+            <div class="book-card">
+                <div class="illustration">
+                    <div class="illustration-symbol">⚖️📊✨</div>
+                    <p class="illustration-caption">Confronto tra le due Lettere</p>
+                </div>
+                
+                <h2>Confronto e Riflessioni</h2>
+                <p class="subtitle">Santità, Amore e Speranza</p>
+                
+                <div class="section">
+                    <h3>📋 Tabella Comparativa</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <thead>
+                            <tr style="background: var(--paper-dark);">
+                                <th style="padding: 12px; border: 1px solid var(--accent); font-family: 'Cinzel', serif;">Aspetto</th>
+                                <th style="padding: 12px; border: 1px solid var(--accent); font-family: 'Cinzel', serif;">1 Tessalonicesi</th>
+                                <th style="padding: 12px; border: 1px solid var(--accent); font-family: 'Cinzel', serif;">2 Tessalonicesi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--accent);"><strong>Tono</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Gioioso e celebrativo</td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Correttivo ma speranzoso</td>
+                            </tr>
+                            <tr style="background: rgba(139,69,19,0.05);">
+                                <td style="padding: 10px; border: 1px solid var(--accent);"><strong>Contesto</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Persecuzione iniziale</td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Persecuzione intensificata</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--accent);"><strong>Focus</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Fede, amore, speranza</td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Correzione di errori</td>
+                            </tr>
+                            <tr style="background: rgba(139,69,19,0.05);">
+                                <td style="padding: 10px; border: 1px solid var(--accent);"><strong>Ritorno di Gesù</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Speranza consolante</td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Chiarezza profetica</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid var(--accent);"><strong>Problema Lavoro</strong></td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Accennato brevemente</td>
+                                <td style="padding: 10px; border: 1px solid var(--accent);">Affrontato in dettaglio</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="section">
+                    <h3>🎯 Temi Comuni</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
+                        <div style="text-align: center; padding: 20px; background: var(--paper-dark); border-radius: 8px;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">✨</div>
+                            <h4 style="font-family: 'Cinzel', serif; color: var(--accent);">SANTITÀ</h4>
+                            <p style="font-size: 0.9rem;">Vivere una vita consacrata a Dio</p>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: var(--paper-dark); border-radius: 8px;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">❤️</div>
+                            <h4 style="font-family: 'Cinzel', serif; color: var(--accent);">AMORE</h4>
+                            <p style="font-size: 0.9rem;">Servire gli altri con dedizione</p>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: var(--paper-dark); border-radius: 8px;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">👑</div>
+                            <h4 style="font-family: 'Cinzel', serif; color: var(--accent);">SPERANZA</h4>
+                            <p style="font-size: 0.9rem;">Attendere il ritorno di Gesù</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>💡 Applicazioni per Oggi</h3>
+                    <div class="quote">
+                        "La speranza nel ritorno di Gesù non dovrebbe generare speculazione su timeline apocalittiche, ma piuttosto portare speranza, ispirare fedeltà e devozione a Gesù."
+                    </div>
+                    <ul style="margin: 20px 0 20px 30px; line-height: 2;">
+                        <li>Le nostre <strong>speranze</strong> plasmano ciò per cui viviamo</li>
+                        <li>La <strong>santità</strong> è una vita contro-culturale radicata in Gesù</li>
+                        <li>L'<strong>amore</strong> è la risposta all'opposizione</li>
+                        <li>La <strong>sofferenza</strong> può essere redenta e trasformata</li>
+                        <li>Il <strong>lavoro diligente</strong> è un atto di culto</li>
+                    </ul>
+                </div>
+                
+                <div class="illustration">
+                    <div class="illustration-symbol">🕊️✝️📖</div>
+                    <p class="illustration-caption">"Il Signore della pace vi dia pace in ogni momento"</p>
+                </div>
+            </div>
+            
+            <div class="slide-controls">
+                <button class="control-btn" onclick="prevSlide()">← Precedente</button>
+                <span class="slide-counter">Fine</span>
+                <button class="control-btn" onclick="showSlide(0)">Inizio →</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>✦ Dashboard creata da JARVIS ✦</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Trascrizioni dai video di The Bible Project</p>
+    </footer>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                navBtns[i].classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                    navBtns[i].classList.add('active');
+                }
+            });
+            currentSlide = index;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Tastiera navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
